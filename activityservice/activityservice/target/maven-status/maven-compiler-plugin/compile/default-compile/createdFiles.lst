@@ -1,0 +1,4 @@
+com\example\activityservice\model\Activity.class
+com\example\activityservice\model\ActivityType.class
+com\example\activityservice\ActivityserviceApplication.class
+com\example\activityservice\model\Activity$ActivityBuilder.class
