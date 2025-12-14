@@ -17,7 +17,30 @@ public class ActivityService {
     private ActivityRepository activityRepository;
 
     public ActivityResponse trackActivity(ActivityRequest request) {
-        return new ActivityResponse();
+
+        Activity activity= Activity.builder()
+                .userId(request.getUserId())
+                .type(request.getType())
+                .duration(request.getDuration())
+                .caloriesBurned(request.getCaloriesBurned())
+                .startTime(request.getStartTime())
+                .addtionalMetrics(request.getAddtionalMetrics())
+                .build();
+        Activity savedActivity = activityRepository.save(activity);
+        return mapToResponse(activity);
+
 }
+private ActivityResponce mapToResponse(Activity activity){
+    Activityresponse response = new ActivityResponse();
+    response.setId(activity.getId());
+    response.setUserId(activity.getUserId());
+    response.setType(activity.getType());
+    response.setDuration(activity.getDuration());
+    response.setCaloriesBurned(activity.getCaloriesBurned());
+    response.setStartTime(activity.getStartTime());
+    response.setAddtionalMetrics(activity.getAddtionalMetrics());
+    response.setCreatedAt(activity.getCreatedAt());
+    response.setUpdatedAt(activity.getUpdatedAt());
+    return response;
 
 }
